@@ -1,0 +1,32 @@
+import random
+import string
+import time
+
+def letter_strings_generator():
+    random.seed(time.time())
+    start = string.ascii_uppercase
+    lst = [ch for ch in start]
+    nums = [str(i) for i in range(10)]
+    two_letters = random.sample(lst, 2)
+    two_strings = random.sample(nums, 2)
+    return two_letters,two_strings
+def first_half_generator(two_letters,two_strings):
+    first_half = two_letters + two_strings
+    first_half = ''.join(first_half)
+    return first_half
+def second_half_generator(two_letters,two_strings):
+    second_half = two_strings + two_letters
+    second_half = ''.join(second_half)
+    return second_half
+def generate_index():
+    two_letters, two_strings = letter_strings_generator()
+    first_half = first_half_generator(two_letters,two_strings)
+    time.sleep(0.000001)
+    random.seed(time.time())
+    two_letters, two_strings = letter_strings_generator()
+    second_half = second_half_generator(two_strings,two_letters)
+    result = first_half +'_'+second_half
+    return result
+
+print(generate_index())
+
